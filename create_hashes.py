@@ -1,30 +1,58 @@
-import json
-import md5
+from hashlib import md5
+import pandas as pd
 
-#make hashes
-def baseN(num,b,numerals="ABCDEFGHIJKLMNOPQRSTUVWXYZ"):
-    return ((num == 0) and numerals[0]) or (baseN(num // b, b, numerals).lstrip(numerals[0]) + numerals[num % b])
-
-cksum_number_map = {}
-def add(s):
-    cksum_number_map[md5.md5(s).hexdigest().upper()] = s
-# http://www.nyc.gov/html/tlc_medallion_info/html/tlc_lookup.shtml
-#The correct formats are:
-#one number, one letter, two numbers. For example: 5X55
-#two letters, three numbers. For example: XX555
-#three letters, three numbers. For example: XXX555
-for i in range(1000):
-    for j in range(26**3):
-        istr = str(i)
-        alpha_string = baseN(j,26)
-        if len(alpha_string) == 1:
-            add(istr[0] + alpha_string + istr[1:])
-        else:
-            add(alpha_string + istr)
-for i in range(int(6e6)):
-    cksum_number_map[md5.md5('%0.6d' % i).hexdigest().upper()] = str(i)
-for i in range(5000000, 5900000):
-    cksum_number_map[md5.md5('%0.7d' % i).hexdigest().upper()] = str(i)
+numerals = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
-json.dump(cksum_number_map, open('rainbow.json', 'w'))
+# make hashes
+def base_n(num, b):
+    return ((num == 0) and numerals[0]) or (base_n(num // b, b).lstrip(numerals[0]) + numerals[num % b])
+
+
+# string to upper case md5 hash
+def string_to_md5_upper(str_in):
+    return md5(str_in.encode()).hexdigest().upper()
+
+
+# create checksum map
+def build_checksum_map():
+
+    checksum_map = {}
+
+    for i in range(1000):
+        for j in range(26 ** 3):
+            i_str = str(i)
+            alpha_string = base_n(j, 26)
+            if len(alpha_string) == 1:
+                target_string = i_str[0] + alpha_string + i_str[1:]
+            else:
+                target_string = alpha_string + i_str
+
+            target_string_hash = string_to_md5_upper(target_string)
+
+            checksum_map[target_string_hash] = target_string
+
+    for i in range(int(6e6)):
+        s = '%0.6d' % i
+        target_string_hash = string_to_md5_upper(s)
+        checksum_map[target_string_hash] = str(i)
+
+    for i in range(5000000, 5900000):
+        s = '%0.7d' % i
+        target_string_hash = string_to_md5_upper(s)
+        checksum_map[target_string_hash] = str(i)
+
+    return checksum_map
+
+
+def main():
+
+    checksum_map = build_checksum_map()
+
+    df = pd.Series(checksum_map).to_frame()
+
+    print(df.info())
+
+
+if __name__ == '__main__':
+    main()
