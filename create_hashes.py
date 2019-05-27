@@ -51,7 +51,9 @@ def main():
 
     df = pd.Series(checksum_map).to_frame()
 
-    print(df.info())
+    # df.to_csv("rainbow.csv")
+
+    df.to_pickle("rainbow.pkl")
 
 
 if __name__ == '__main__':
