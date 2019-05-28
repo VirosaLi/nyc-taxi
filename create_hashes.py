@@ -1,5 +1,5 @@
 from hashlib import md5
-import pandas as pd
+import json
 
 numerals = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
@@ -49,15 +49,8 @@ def main():
 
     checksum_map = build_checksum_map()
 
-    # print(checksum_map.items())
-
-    # df = pd.Series(checksum_map).to_frame()
-
-    df = pd.DataFrame.from_dict(checksum_map, orient='index', columns=['string'])
-
-    # print(df)
-
-    df.to_csv("rainbow.csv")
+    with open('rainbow.txt', 'w') as output:
+        json.dump(checksum_map, output)
 
 
 if __name__ == '__main__':
