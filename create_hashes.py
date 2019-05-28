@@ -49,11 +49,15 @@ def main():
 
     checksum_map = build_checksum_map()
 
-    df = pd.Series(checksum_map).to_frame()
+    print(checksum_map.items())
 
-    # df.to_csv("rainbow.csv")
+    # df = pd.Series(checksum_map).to_frame()
 
-    df.to_pickle("rainbow.pkl")
+    df = pd.DataFrame(checksum_map, index=[0], columns=['hash', 'string'])
+
+    print(df)
+
+    # df.to_csv("rainbow.csv", columns=['hash', 'string'])
 
 
 if __name__ == '__main__':
