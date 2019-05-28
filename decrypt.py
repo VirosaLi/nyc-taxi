@@ -1,6 +1,6 @@
-from pyspark.sql import SparkSession
-import json
 import os
+import json
+from pyspark.sql import SparkSession
 
 
 def look_up(o):
@@ -13,7 +13,7 @@ def look_up(o):
     medallion = o['medallion']
     hack_license = o['hack_license']
 
-    # check miss, left the missed data unchanged
+    # check miss, left the row with missing hash unchanged
     if medallion not in rainbow_table or hack_license not in rainbow_table:
         return o
     else:
