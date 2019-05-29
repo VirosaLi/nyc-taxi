@@ -50,7 +50,7 @@ def main():
     # build rainbow table
     checksum_map = build_checksum_map()
 
-    # store json
+    # store rainbow table to file
     with open('rainbow.txt', 'w') as output:
         json.dump(checksum_map, output)
 

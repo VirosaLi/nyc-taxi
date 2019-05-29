@@ -25,7 +25,9 @@ def look_up(o):
 with open('rainbow.txt', 'r') as rainbow:
     rainbow_table = json.load(rainbow)
 
-    # start a new spark session
+    # start a local spark session
+    # set to "local[*]" to use all cores
+    # adjust memory setting accordingly, use as much memory as possible
     spark = SparkSession.builder \
         .master("local[1]") \
         .config("spark.executor.memory", "8g") \
