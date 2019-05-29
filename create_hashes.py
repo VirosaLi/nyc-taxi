@@ -47,7 +47,7 @@ def build_checksum_map():
 
 def main():
 
-    # build rainbow table
+    # build rainbow table (checksum map)
     checksum_map = build_checksum_map()
 
     # store rainbow table to file
