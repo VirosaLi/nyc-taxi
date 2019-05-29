@@ -45,4 +45,4 @@ Pandas might work.
 
 ### Investigate Cloud Option
 
-Estimate cost.
+Estimate cost of running the Spark job on Cloud.
