@@ -66,3 +66,11 @@ For example:
 ### Clarify Potential Collision in the Hashes
 
 Investigate potential collisions in the dataset and lookup table. It's very unlikely to occur.
+
+
+## Reference
+
+This repo is forked from Vijay's nyc taxi repo. But everything has been writen. His blog post is very helpful as well.
+
+https://github.com/vijayp/nyc-taxi
+https://tech.vijayp.ca/of-taxis-and-rainbows-f6bc289679a1
