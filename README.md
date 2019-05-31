@@ -25,7 +25,7 @@ python create_hashes.py
 
 create_hashes.py creates one lookup table for all valid licenses and one for all valid medallion.
 
-## Run Spark Job to Decrypt the Data
+## Decrypt Medallion and License
 
 python decrypt_pandas.py
 
