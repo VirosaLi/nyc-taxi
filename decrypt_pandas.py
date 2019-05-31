@@ -40,4 +40,10 @@ df = pd.read_csv("trip_data_1.csv")
 df['medallion'] = df['medallion'].map(lambda x: decrypt_medallion(x))
 df['hack_license'] = df['hack_license'].map(lambda x: decrypt_licence(x))
 
+# print out the first 10 rows
 print(df.head(10))
+
+# save the result
+df.to_csv('trip_data_1_decrypt.csv')
+
+

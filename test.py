@@ -1,21 +1,9 @@
-# from pyspark.sql import SparkSession
-# import json
-# import os
-#
-# spark = SparkSession.builder \
-#         .master("local[1]") \
-#         .config("spark.executor.memory", "8g") \
-#         .config("spark.driver.memory", "8g") \
-#         .config("spark.memory.offHeap.enabled", True) \
-#         .config("spark.memory.offHeap.size", "8g") \
-#         .appName("MD5") \
-#         .getOrCreate()
-#
-# # load data
-# df = spark.read.csv('trip_data_1.csv', header=True, samplingRatio=0.00000001)
-#
-# # df.rdd.saveAsTextFile(os.getcwd() + '/' + 'output')
-#
-# df.toPandas.to_csv('sample.csv')
+import pandas as pd
 
-print('a00edfcf1dd459755344024dd6aa1103'.upper())
+df_original = pd.read_csv("trip_data_1.csv")
+
+df_decrypt = pd.read_csv("trip_data_1_decrypt.csv")
+
+print(df_original.info())
+
+print(df_decrypt.info())
