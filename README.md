@@ -23,17 +23,11 @@ conda activate nyctaxi
 
 python create_hashes.py
 
-create_hashes.py creates a table that contains the MD5 hashes of all valid medallion and hack_license, It writes 
-the table to a file in the working directory.
+create_hashes.py creates one lookup table for all valid licenses and one for all valid medallion.
 
 ## Run Spark Job to Decrypt the Data
 
-python decrypt.py
-
-decrypt.py loads the lookup table into memory. Then it set up a Spark client and loads the taxi trip data into Spark.
-The result is written to a folder.
-
-I didn't implement a command line tool. Spark settings and other parameters need to be edited in the code.
+python decrypt_pandas.py
 
 ## Todo
 
@@ -72,11 +66,3 @@ For example:
 ### Clarify Potential Collision in the Hashes
 
 Investigate potential collisions in the dataset and lookup table. It's very unlikely to occur.
-
-### Try Pandas instead of Spark
-
-Spark is a overkill. It might be a good choice if we actually have a cluster. Pandas works just fine.
-
-### Investigate Cloud Option
-
-Estimate cost of running the Spark job on Cloud.
