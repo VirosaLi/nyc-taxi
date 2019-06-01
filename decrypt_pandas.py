@@ -9,7 +9,7 @@ def decrypt_medallion(m):
     :return: the decrypt medallion if it's in the table, the original encrypt medallion if not
     """
     if m not in medallion_table:
-        print('miss medallion: ', m)
+        # print('miss medallion: ', m)
         return m
     else:
         return medallion_table[m]
@@ -22,7 +22,7 @@ def decrypt_licence(m):
     :return: the decrypt licence if it's in the table, the original encrypt licence if not
     """
     if m not in licence_table:
-        print('miss licence: ', m)
+        # print('miss licence: ', m)
         return m
     else:
         return licence_table[m]
@@ -44,6 +44,6 @@ df['hack_license'] = df['hack_license'].map(lambda x: decrypt_licence(x))
 print(df.head(10))
 
 # save the result
-df.to_csv('trip_data_1_decrypt.csv')
+# df.to_csv('trip_data_1_decrypt.csv')
 
 

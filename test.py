@@ -1,9 +1,4 @@
-import pandas as pd
+from hashlib import md5
 
-df_original = pd.read_csv("trip_data_1.csv")
+print(md5('0'.encode()).hexdigest().upper())
 
-df_decrypt = pd.read_csv("trip_data_1_decrypt.csv")
-
-print(df_original.info())
-
-print(df_decrypt.info())
