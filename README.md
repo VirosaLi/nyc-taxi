@@ -11,9 +11,7 @@ Enter following commands in terminal to setup conda python environment
 --------------------------
 conda update conda
 
-conda create -n nyctaxi python=3.7
-
-conda install pyspark pandas
+conda create -n nyctaxi python=3.7 pandas
 
 conda activate nyctaxi
 

@@ -46,12 +46,17 @@ def build_licence_table():
     return licence_table
 
 
-medallion = build_medallion_table()
+def main():
+    medallion = build_medallion_table()
 
-with open('medallion_table.txt', 'w') as output:
-    json.dump(medallion, output)
+    with open('medallion_table.txt', 'w') as output:
+        json.dump(medallion, output)
 
-# licence = build_licence_table()
-#
-# with open('licence_table.txt', 'w') as output:
-#     json.dump(licence, output)
+    licence = build_licence_table()
+
+    with open('licence_table.txt', 'w') as output:
+        json.dump(licence, output)
+
+
+if __name__ == '__main__':
+    main()
