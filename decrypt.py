@@ -4,8 +4,8 @@ import pandas as pd
 from create_hashes import build_medallion_table, build_licence_table
 from decrypt_pandas import decrypt_md5
 
-medallion_table_path = 'medallion_table.txt'
-license_table_path = 'license_table.txt'
+medallion_table_path = path.join('tables', 'medallion_table.txt')
+license_table_path = path.join('tables', 'license_table.txt')
 
 # check if lookup tables have been created
 if path.exists(medallion_table_path) and path.exists(license_table_path):
@@ -18,10 +18,16 @@ if path.exists(medallion_table_path) and path.exists(license_table_path):
 else:
     print('Decryption tables do not exist, creating...\n')
 
+    # create folder for tables
+    if not path.exists('tables'):
+        mkdir('tables')
+
+    # create and save medallion table
     medallion_table = build_medallion_table()
     with open(medallion_table_path, 'w') as output:
         json.dump(medallion_table, output)
 
+    # create and save medallion license
     license_table = build_licence_table()
     with open(license_table_path, 'w') as output:
         json.dump(license_table, output)
